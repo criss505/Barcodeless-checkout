@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>End Transaction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .red-btn
+        {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="body-content">
+        <div class="end-transaction-box">
+            <h1>Thank you for shopping with us!</h1>
+            <a href="{{ url_for('index') }}">New Shopping Basket</a>
+        </div>
+    </div>
+</body>
+</html>

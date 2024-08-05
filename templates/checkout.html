@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/products_style.css') }}">
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="body-content">
+        <div class="container">
+            <div class="checkout-box">
+                <h1>Checkout</h1>
+                <h2>Final Products List</h2>
+                <ul class="product-list">
+                    {% for product in results %}
+                        <li class="product-item">
+                            <span class="product-name">{{ loop.index }}. {{ product.name }}</span>
+                            <span class="product-quantity">{{ product.unit_price }}x{{ product.quantity }}</span>
+                            <span class="product-price">{{ product.total_price }} RON</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="total-container">
+                    <span class="total-label">Total:</span>
+                    <span class="total-price">{{ total_price }} RON</span>
+                </div>
+                <form action="{{ url_for('pay') }}" method="post">
+                    <button type="submit" class="pay-button">Pay</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

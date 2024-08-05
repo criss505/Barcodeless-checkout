@@ -1,0 +1,8 @@
+background image site
+https://pixabay.com/photos/aisle-background-buy-clean-food-3105629/
+editata cu canva
+e fara copyright free to use
+
+cand e gata versiunea de web sa dai rebuild la imaginea docker
+docker build -t barcodeless-app:latest .
+docker run -p 5000:5000 barcodeless-app:latest

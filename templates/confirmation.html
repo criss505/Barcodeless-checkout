@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="body-content">
+        <div class="container">
+            <div class="checkout-box">
+                <h1>Confirmation</h1>
+                <h2>Final Products List</h2>
+                <ul>
+                    {% for obj in results %}
+                    <li>
+                        <p>{{ obj.class }}</p>
+                        <img src="{{ obj.image_url }}" alt="Detected Image" style="max-width: 100px;">
+                        <button class="report-button" onclick="reportImage('{{ obj.image_url }}', '{{ obj.class}}');">x</button>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ url_for('checkout') }}" class="confirm-button">Confirm</a>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+        function reportImage(imageUrl, imageClass) {
+            console.log("Reporting image URL:", imageUrl);  // check what is being sent
+            fetch("{{ url_for('report_problem') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ imageUrl: imageUrl, imageClass: imageClass })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Server Response:", data);
+                alert('Image reported successfully');
+                // Reload the page to reflect the changes
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error reporting image');
+            });
+        }
+        window.onload = function() {
+            if (!window.location.hash) {
+                window.location = window.location + '#loaded';
+                window.location.reload();
+            }
+        }
+        </script>
+        
+
+</body>
+</html>

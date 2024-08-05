@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Processing Payment</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body onload="redirectToEndTransaction()">
+    <div class="body-content">
+        <div class="container">
+            <div class="checkout-box">
+                <h1>Processing Payment</h1>
+                <p>Please wait while we process your payment...</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+    function redirectToEndTransaction() {
+        setTimeout(function() {
+            window.location.href = "{{ url_for('end_transaction') }}";
+        }, 3000);
+    }
+</script>

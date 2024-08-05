@@ -1,0 +1,29 @@
+<div class="header">
+    <button class="btn red-btn" onclick="reportProblem()">Report a Problem!</button>
+    <button class="btn red-btn" onclick="window.location.href='/abort_basket'">Abort Basket</button>
+</div>
+
+<!-- custom report popup -->
+<div id="reportPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <p>Wait for an employee's help</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function reportProblem() {
+        document.getElementById('reportPopup').style.display = 'block';
+    }
+
+    function closePopup() {
+        document.getElementById('reportPopup').style.display = 'none';
+    }
+
+    // Close the modal if the user clicks outside of it
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('reportPopup')) {
+            closePopup();
+        }
+    }
+</script>

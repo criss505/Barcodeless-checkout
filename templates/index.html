@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Shopping</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script type="text/javascript">
+        function checkFileInput() {
+            const fileInput = document.getElementById('fileInput');
+            const uploadButton = document.getElementById('uploadButton');
+            uploadButton.disabled = !fileInput.value;
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            checkFileInput();
+            document.getElementById('fileInput').addEventListener('change', checkFileInput);
+        });
+    </script>
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="body-content">
+        <div class="container">
+            <div class="upload-box">
+                <h1>Upload Basket</h1>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" id="fileInput">
+                    <input type="submit" value="Upload" id="uploadButton">
+                </form>
+                {% if uploaded_image_url %}
+                    <div class="image-preview">
+                        <h2>Uploaded Image:</h2>
+                        <img src="{{ uploaded_image_url }}" alt="Uploaded Image">
+                    </div>
+                    <a href="{{ url_for('confirmation') }}" class="checkout-button">Checkout</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

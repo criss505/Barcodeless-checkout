@@ -1,0 +1,16 @@
+alpro-milk - 37
+beans - 44
+chips - 35
+corn - 38
+gummies - 40
+knoppers - 34
+lemon - 44
+lime - 17
+milk - 49
+milka-brownie -22
+milka-hazelnut - 18
+orange - 32
+oreo - 31
+water - 32
+
+
